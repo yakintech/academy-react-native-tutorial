@@ -979,7 +979,7 @@ const Products = ({ navigation }) => {
             <>
                 {
                     products.map((item) => {
-                        return <TouchableOpacity onPress={() => goToDetail(item.id)}>
+                        return <TouchableOpacity key={item.id} onPress={() => goToDetail(item.id)}>
                             <Text>{item.name}</Text>
                         </TouchableOpacity>
                     })

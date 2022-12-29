@@ -1,34 +1,61 @@
 import { View, Text, SafeAreaView } from 'react-native'
 import React from 'react'
 import { NavigationContainer } from '@react-navigation/native'
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from './src/navigationSample/Home';
 import About from './src/navigationSample/About';
-import Products from './src/navigationSample/Products';
-import ProductDetail from './src/navigationSample/ProductDetail';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import ProfileStack from './src/tabNavigationSample/profile/ProfileStack';
 
-
-const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
 
 const App = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
 
-        <Stack.Screen name="Home" component={Home} options={
-          {
-            title: 'Anasayfa',
-            headerStyle:{
-              // backgroundColor:'tomato'
-            }
-          }
-        } />
-        <Stack.Screen name="About" component={About} />
-        <Stack.Screen name="Products" component={Products} />
-        <Stack.Screen name="ProductDetail" component={ProductDetail} />
+      <Tab.Navigator
+          >
+        <Tab.Screen
+          name='Home'
+          component={Home}
+          options={{
+            
+            tabBarLabel: 'Home',
+            tabBarIcon: ({ color }) => (
+              <MaterialCommunityIcons name="alien-outline" color={color} size={26} />
+            ),
+          }}
 
-      </Stack.Navigator>
-    </NavigationContainer>
+        />
+        <Tab.Screen
+          name='About'
+          component={About}
+          options={{
+            tabBarLabel: 'About',
+            tabBarIcon: ({ color }) => (
+              <MaterialCommunityIcons name="apple" color={color} size={26} />
+            ),
+          }}
+        />
+
+        <Tab.Screen
+          name='Profile'
+          component={ProfileStack}
+        
+
+          options={{
+            headerShown:false,
+            tabBarLabel: 'Profile',
+            tabBarIcon: ({ color }) => (
+              <MaterialCommunityIcons name="human-handsup" color={color} size={26} />
+            ),
+          }}
+        />
+
+      </Tab.Navigator>
+
+
+    </NavigationContainer >
 
   )
 }
